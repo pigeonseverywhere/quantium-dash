@@ -10,20 +10,17 @@ app = Dash(__name__)
 
 # assume you have a "long-form" data frame
 # see https://plotly.com/python/px-arguments/ for more options
-file_path = os.getcwd() + '/data/pink_morsel_sales.csv'
+DIRECTORY='/data/'
+FILE='pink_morsel_sales.csv'
+file_path = os.getcwd() + DIRECTORY + FILE
 df = pd.read_csv(file_path)
-#
-
 
 fig = px.line(df, x = 'date', y = 'sales', color='region', title = "Pink Morsel Sales Over Time")
 
-
-app.layout = html.Div(children=[
-    html.H1(children='Pink Morsel Sales'),
-
-    html.Div(children='''
-        Dash: A web application framework for your data.
-    '''),
+app.layout = html.Div(
+    className="app-header",
+    children=[
+    html.H1(children='Pink Morsel Sales', className="app-header-title"),
 
     dcc.Graph(
         id='pink morsel sales',
